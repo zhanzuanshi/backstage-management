@@ -6,6 +6,7 @@ import {
   FormItem,
   Input,
   Message,
+  MessageBox,
   Container,
   Header,
   Aside,
@@ -22,7 +23,8 @@ import {
   BreadcrumbItem,
   Table,
   TableColumn,
-  Pagination  
+  Pagination,
+  Drawer,
 } from "element-ui";
 const components = [
   Button,
@@ -47,12 +49,16 @@ const components = [
   BreadcrumbItem,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  Drawer,
 ];
 function UseElement() {
   components.forEach((val) => {
     return Vue.use(val);
   });
-  return (Vue.prototype.$message = Message);
+  return (
+    (Vue.prototype.$message = Message),
+    (Vue.prototype.$confirm = MessageBox.confirm)
+  );
 }
 UseElement();
