@@ -1,5 +1,5 @@
 import { login } from "@/api/user"
-import { getToken,setToken } from "@/utils/storage"
+import { getToken,setToken,removeToken } from "@/utils/storage"
 
 export default{
     namespaced:true,
@@ -12,6 +12,10 @@ export default{
                 state.token=token
             // 存储到localStorage
                 setToken(token)
+        },
+        logout(state){
+                state.token=''
+                removeToken()
         }
     },
     actions:{
@@ -19,7 +23,7 @@ export default{
             const res=await login(data);
             console.log(res.data.token);
             context.commit('updateToken',res.data.token)
-        }
+        },
     },
     getters:{}
 
